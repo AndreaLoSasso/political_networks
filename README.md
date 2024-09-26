@@ -31,4 +31,4 @@ Per eseguire questa applicazione, assicurati di avere installate le seguenti lib
 1. **Clona il repository:**
    ```bash
    git clone https://github.com/AndreaLoSasso/streamlit_voti_240924.git
-   cd streamlit-voting-app
+   cd streamlit_voti_240924
