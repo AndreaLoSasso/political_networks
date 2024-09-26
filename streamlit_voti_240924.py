@@ -27,7 +27,7 @@ image_size = 150  # Puoi regolare la dimensione qui
 
 # Prima immagine
 with col1:
-    st.image("/Users/andrealosasso/Dropbox/zDottorato/Analisi Voto Bari/foto_to_streamlit/d74eb321-6f68-4907-bfd3-01b8c3b791f0.png", width=700)
+    st.image("/d74eb321-6f68-4907-bfd3-01b8c3b791f0.png", width=700)
 
 
 # Aggiungi del margine per separare le immagini dal testo
@@ -37,11 +37,11 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 
 # Caricamento del file per la prima pagina
-file_path_df = '/Users/andrealosasso/Dropbox/zDottorato/Analisi Voto Bari/Network Analysis/240729_Modified_Elenco_Circoscrizioni_Refer.xlsx'
+file_path_df = '/240729_Modified_Elenco_Circoscrizioni_Refer.xlsx'
 df = pd.read_excel(file_path_df)
 
 # Caricamento del file Excel per la seconda pagina
-file_path_voti = '/Users/andrealosasso/Dropbox/zDottorato/Analisi Voto Bari/Voti comunali Bari 2024.xlsx'
+file_path_voti = '/Voti comunali Bari 2024.xlsx'
 df_voti = pd.read_excel(file_path_voti)
 
 
@@ -303,7 +303,7 @@ image_size = 150  # Puoi regolare la dimensione qui
 
 # Seconda immagine
 with col2:
-    st.image("/Users/andrealosasso/Dropbox/zDottorato/Analisi Voto Bari/foto_to_streamlit/logo_4f1d3968fa43777fe3839415140eeef6_2x.png", width=image_size)
+    st.image("/logo_4f1d3968fa43777fe3839415140eeef6_2x.png", width=image_size)
 
         
         
