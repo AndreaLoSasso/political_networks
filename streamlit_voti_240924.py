@@ -41,7 +41,7 @@ file_path_df = 'https://github.com/AndreaLoSasso/political_networks/blob/main/24
 df = pd.read_excel(file_path_df)
 
 # Caricamento del file Excel per la seconda pagina
-file_path_voti = 'https://github.com/AndreaLoSasso/political_networks/blob/main/Voti comunali Bari 2024.xlsx'
+file_path_voti = 'https://github.com/AndreaLoSasso/political_networks/blob/main/Voti comunali Bari 2024.csv'
 df_voti = pd.read_excel(file_path_voti)
 
 
