@@ -37,7 +37,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 
 # Caricamento del file per la prima pagina
-file_path_df = 'https://github.com/AndreaLoSasso/political_networks/blob/main/240729_Modified_Elenco_Circoscrizioni_Refer.xlsx'
+file_path_df = 'https://github.com/AndreaLoSasso/political_networks/blob/main/240729_Modified_Elenco_Circoscrizioni_Refer.csv'
 df = pd.read_excel(file_path_df)
 
 # Caricamento del file Excel per la seconda pagina
