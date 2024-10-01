@@ -1,9 +1,7 @@
 streamlit
 pandas
 plotly
-plotly.graph_objs
-plotly.express
 networkx
 folium
-streamlit-folium
+streamlit_folium
 openpyxl
