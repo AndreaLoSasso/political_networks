@@ -27,7 +27,7 @@ image_size = 150  # Puoi regolare la dimensione qui
 
 # Prima immagine
 with col1:
-    st.image("https://github.com/AndreaLoSasso/political_networks/blob/main/d74eb321-6f68-4907-bfd3-01b8c3b791f0.png", width=700)
+    st.image("https://raw.githubusercontent.com/AndreaLoSasso/political_networks/main/d74eb321-6f68-4907-bfd3-01b8c3b791f0.png", width=700)
 
 
 # Aggiungi del margine per separare le immagini dal testo
@@ -37,12 +37,13 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 
 # Caricamento del file per la prima pagina
-file_path_df = 'https://github.com/AndreaLoSasso/political_networks/blob/main/240729_Modified_Elenco_Circoscrizioni_Refer.csv'
+file_path_df = 'https://raw.githubusercontent.com/AndreaLoSasso/political_networks/main/240729_Modified_Elenco_Circoscrizioni_Refer.csv'
 df = pd.read_csv(file_path_df)
 
-# Caricamento del file Excel per la seconda pagina
-file_path_voti = 'https://github.com/AndreaLoSasso/political_networks/blob/main/Voti comunali Bari 2024.csv'
+# Caricamento del file per la seconda pagina
+file_path_voti = 'https://raw.githubusercontent.com/AndreaLoSasso/political_networks/main/Voti%20comunali%20Bari%202024.csv'
 df_voti = pd.read_csv(file_path_voti)
+
 
 
 ### Contenuto della Prima Pagina ###
