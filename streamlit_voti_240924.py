@@ -10,7 +10,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import networkx as nx
-import plotly.graph_objs as go
+import plotly.graph_objects as go  # Updated this line to use plotly.graph_objects
 import folium
 from streamlit_folium import st_folium
 
@@ -19,7 +19,6 @@ st.sidebar.title("Navigazione")
 page = st.sidebar.radio("Seleziona la pagina:", ["Pagina 1", "Pagina 2"])
 
 # Barra in alto con due immagini e testo in maiuscolo (capitello)
-# Impostiamo una larghezza fissa per le colonne per evitare sovrapposizioni
 col1, col2 = st.columns([1, 1])  # Due colonne di dimensioni uguali
 
 # Definisci la dimensione delle immagini
@@ -32,9 +31,6 @@ with col1:
 
 # Aggiungi del margine per separare le immagini dal testo
 st.markdown("<br>", unsafe_allow_html=True)
- # Testo in maiuscolo
-# Testo in maiuscolo
-
 
 # Caricamento del file per la prima pagina
 file_path_df = 'https://raw.githubusercontent.com/AndreaLoSasso/political_networks/main/240729_Modified_Elenco_Circoscrizioni_Refer.csv'
@@ -43,8 +39,6 @@ df = pd.read_csv(file_path_df)
 # Caricamento del file per la seconda pagina
 file_path_voti = 'https://raw.githubusercontent.com/AndreaLoSasso/political_networks/main/Voti%20comunali%20Bari%202024.csv'
 df_voti = pd.read_csv(file_path_voti)
-
-
 
 ### Contenuto della Prima Pagina ###
 if page == "Pagina 1":
@@ -221,92 +215,18 @@ elif page == "Pagina 2":
                                  template='plotly_white')
 
         # Modifica le dimensioni della figura
-        fig_scatter.update_layout(width=800, height=600)  # Imposta larghezza e altezza
+        fig_scatter.update_layout(width=800, height=600)
 
         # Visualizza lo scatter plot
         st.plotly_chart(fig_scatter)
 
         # Calcola il totale dei voti per le liste selezionate
-        total_votes = df_selected['Voti'].sum()
+        total_votes = df_selected.groupby('Lista')['Voti'].sum()
 
-        # Mappa colori per le liste
-        color_map = {
-            "AGORA'": "#FF6347",  # Rosso
-            "BARI BENE COMUNE": "#4682B4",  # Blu
-            "BARI CITTA' D'EUROPA": "#32CD32",  # Verde lime
-            "BARI X FABIO ROMITO": "#FFD700",  # Giallo
-            "CON LECCESE SINDACO": "#8A2BE2",  # Blu violaceo
-            "DECARO PER BARI": "#FF4500",  # Arancione
-            "EUROPA VERDE - VERDI": "#228B22",  # Verde scuro
-            "FDI": "#B22222",  # Rosso scuro
-            "FORZA ITALIA": "#0000FF",  # Blu
-            "GENERAZIONE URBANA": "#DAA520",  # Giallo dorato
-            "LAFORGIA SINDACO": "#8B4513",  # Marrone
-            "LECCESE SINDACO": "#7B68EE",  # Blu pervinca
-            "LIBERALI E RIFORMISTI - nPSI": "#D2691E",  # Cioccolato
-            "M5S": "#00FF00",  # Verde
-            "MARIO CONCA PER BARI": "#A52A2A",  # Marrone
-            "NOI MODERATI": "#FF8C00",  # Arancione scuro
-            "NOI PER BARI - ITALEXIT PER L'ITALIA PER SCIACOVELLI SINDACO": "#FFE4B5",  # Beige
-            "NOI POPOLARI": "#9370DB",  # Viola chiaro
-            "OLTRE MANGANO SINDACO": "#20B2AA",  # Verde acqua
-            "PCI": "#FF1493",  # Rosa intenso
-            "PD": "#000080",  # Blu navy
-            "PENSIONATI E INVALIDI": "#7FFF00",  # Verde chiaro
-            "PROGETTO BARI CON LECCESE": "#FFD700",  # Giallo
-            "ROMITO SINDACO": "#DC143C",  # Rosso crudo
-            "SCIACOVELLI SINDACO - CI PIACE!": "#ADFF2F",  # Verde giallastro
-            "UDC - PRIMA L'ITALIA PER ROMITO SINDACO": "#778899"   # Grigio bluastro
-        }
-        
-        # Genera una lista di colori per le liste selezionate
-        colors = [color_map.get(lista, "#D3D3D3") for lista in selected_liste]  # Grigio di default se non trovato
+        # Visualizza i risultati
+        st.write("### Totale voti per Lista:")
+        st.write(total_votes)
 
-        # Crea un nuovo dataframe per il pie chart con la frazione dei voti
-        df_selected['Frazione'] = df_selected['Voti'] / df_selected['Voti'].sum()  # Calcola la frazione
-
-        # Crea un diagramma a torta che mostra la distribuzione dei voti
-        fig_pie = px.pie(df_selected, names='Lista', values='Frazione',
-                         title="Distribuzione dei voti per lista selezionata",
-                         labels={'Frazione': 'Frazione di voti'},
-                         template='plotly_white',
-                         color_discrete_sequence=colors)
-
-        # Visualizza il diagramma a torta
-        st.plotly_chart(fig_pie)
-        
-        # Mostra la riga informativa sui voti
-        if len(selected_liste) == 1:
-            # Se una sola lista è selezionata
-            lista_selezionata = selected_liste[0]
-            voti_ottenuti = df_selected['Voti'].sum()
-            percentuale = (voti_ottenuti / df_voti['Voti'].sum()) * 100  # Percentuale sui voti totali
-            st.write(f"La lista **{lista_selezionata}** ha ottenuto complessivamente **{voti_ottenuti}** voti. "
-                     f"Essi equivalgono al **{percentuale:.2f}%** delle preferenze.")
-        else:
-            # Se più liste sono selezionate
-            liste_selezionate = ", ".join(selected_liste)
-            voti_ottenuti = df_selected['Voti'].sum()
-            percentuale = (voti_ottenuti / df_voti['Voti'].sum()) * 100  # Percentuale sui voti totali
-            st.write(f"Le liste **{liste_selezionate}** hanno ottenuto complessivamente **{voti_ottenuti}** voti. "
-                     f"Questi voti equivalgono al **{percentuale:.2f}%** delle preferenze totali.")
-
-        
-    
-# Barra in basso con due immagini e testo in maiuscolo (capitello)
-st.markdown("<br>", unsafe_allow_html=True)  # Aggiungi uno spazio sopra la barra
-
-# Imposta le colonne per le immagini
-col1, col2 = st.columns([1, 1])  # Due colonne di dimensioni uguali
-
-# Definisci la dimensione delle immagini
-image_size = 150  # Puoi regolare la dimensione qui
-
-# Seconda immagine
-with col2:
-    st.image("https://github.com/AndreaLoSasso/political_networks/blob/main/logo_4f1d3968fa43777fe3839415140eeef6_2x.png", width=image_size)
-
-        
         
         
         
