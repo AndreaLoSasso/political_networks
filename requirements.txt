@@ -1,7 +1,6 @@
-streamlit
-pandas
-plotly
-networkx
-folium
-streamlit_folium
-openpyxl
+streamlit==1.24.0  # Or latest version
+pandas==2.0.3  # Or latest version
+plotly==5.17.0  # Or latest version
+networkx==3.1  # For network graph generation
+folium==0.14.0  # For displaying maps
+streamlit-folium==0.11.0  # To integrate Folium with Streamlit
