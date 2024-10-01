@@ -12,7 +12,7 @@ import plotly.express as px
 import networkx as nx
 import plotly.graph_objs as go
 import folium
-from streamlit_folium import folium_static
+from streamlit_folium import st_folium
 
 # Aggiungere una barra laterale per la navigazione
 st.sidebar.title("Navigazione")
@@ -175,7 +175,7 @@ if page == "Pagina 1":
         ).add_to(map_voti)
 
     # Visualizza la mappa
-    folium_static(map_voti)
+    st_folium(map_voti)
 
     # Mappa 2: Visualizza popolazione residente totale
     st.write("## Indice 2: Popolazione Residente Totale")
@@ -194,7 +194,7 @@ if page == "Pagina 1":
         ).add_to(map_population)
 
     # Visualizza la mappa
-    folium_static(map_population)
+    st_folium(map_population)
 
 
 elif page == "Pagina 2":
