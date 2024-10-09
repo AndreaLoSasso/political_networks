@@ -4,6 +4,6 @@ plotly  # Or latest version
 networkx  # For network graph generation
 folium  # For displaying maps
 streamlit-folium  # To integrate Folium with Streamlit
-#pillow
+pillow
 shapely
 geopandas
