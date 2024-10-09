@@ -37,7 +37,7 @@ file_path_df = 'https://raw.githubusercontent.com/AndreaLoSasso/political_networ
 df = pd.read_csv(file_path_df)
 
 # Caricamento del file per la seconda pagina
-file_path_voti = 'https://raw.githubusercontent.com/AndreaLoSasso/political_networks/main/Voti%20comunali%20Bari%202024.csv'
+file_path_voti = 'https://raw.githubusercontent.com/AndreaLoSasso/political_networks/main/voti_comunali_Bari_2024.csv'
 df_voti = pd.read_csv(file_path_voti)
 
 ### Contenuto della Prima Pagina ###
